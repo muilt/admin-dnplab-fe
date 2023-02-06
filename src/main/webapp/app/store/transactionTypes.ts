@@ -1,0 +1,6 @@
+export enum TRANSACTION_STATUS {
+  PENDING = 1,
+  FAILED = 2,
+  SUCCESS = 3,
+  CANCELED = 4,
+}

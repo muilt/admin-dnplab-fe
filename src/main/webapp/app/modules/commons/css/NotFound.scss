@@ -1,0 +1,30 @@
+.page-notfound {
+  .top {
+    margin: 30px auto;
+    h1 {
+      color: $white;
+      text-align: center;
+      font-size: 9em;
+      margin: 0;
+      text-shadow: -1px 0 $gray, 0 1px $gray, 1px 0 $gray, 0 -1px $gray;
+    }
+    h3 {
+      font-size: 2em;
+      text-transform: uppercase;
+      text-align: center;
+      color: $gray;
+      margin-top: -20px;
+      font-weight: 900;
+    }
+  }
+
+  .bottom {
+    margin-top: 10px;
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  }
+}

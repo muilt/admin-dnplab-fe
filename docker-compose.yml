@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  frontend-service:
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    ports:
+      - 80:80

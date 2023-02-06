@@ -1,0 +1,30 @@
+FROM node:16.15.1  AS build
+WORKDIR /app
+ENV PATH node_modules/.bin:$PATH
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm i --legacy-peer-deps
+
+COPY src ./src
+COPY webpack ./webpack
+COPY tsconfig.json ./
+COPY tsconfig.test.json ./
+COPY .eslintrc.json ./
+COPY jest.conf.js ./
+COPY postcss.config.js ./
+ARG BUILD_ENV
+RUN npm run webapp:build:${BUILD_ENV}
+
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY --from=build /app/target/classes/static/ .
+COPY nginx.stg.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+# FROM nginx:alpine
+# WORKDIR /usr/share/nginx/html
+# COPY target/classes/static/ .
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]

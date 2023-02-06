@@ -1,0 +1,63 @@
+.form-login {
+  padding: 16px;
+  max-width: 475px;
+  width: 100%;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  background-color: white;
+  min-height: 400px;
+  margin: auto;
+  .checkbox-rememberMe {
+    margin-left: 0 !important;
+  }
+
+  &-button-submit {
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .input-require {
+    background-color: $appBaseInputRequire;
+    color: white;
+    padding: 2px 5px;
+    margin: 2px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+
+  .input-title {
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+
+  .forgot-password {
+    color: #2a5681;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+
+  .rememberMe {
+    color: #2a5681;
+  }
+  .register {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    .line-login {
+      height: 1px;
+      width: 50%;
+      background: #bdbdbd;
+    }
+    .text-no-wrap {
+      padding: 0 20px;
+      white-space: nowrap !important;
+      margin-bottom: 0 !important;
+      color: #2a5681;
+    }
+  }
+}

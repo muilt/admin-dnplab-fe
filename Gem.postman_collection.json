@@ -1,0 +1,729 @@
+{
+	"info": {
+		"_postman_id": "6f382f55-7762-4a6a-8445-cc85ea3b32f3",
+		"name": "Gem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user/profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{current_server}}/api/user/profile",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "organizer/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"last_name\": \"メイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイ\",\r\n  \"first_name\": \"セイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイ\",\r\n  \"last_name_kana\": \"メイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイメイ\",\r\n  \"first_name_kana\": \"セイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイセイ\",\r\n  \"postal_code\": \"1234567\",\r\n  \"address\": \"東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２\",\r\n  \"province\": \"Hanoi\",\r\n  \"district\": \"Caugiay\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/user/organizer/register",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"organizer",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "organizer/cancel",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{current_server}}/api/user/organizer/cancel",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"organizer",
+						"cancel"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "desc",
+							"disabled": true
+						},
+						{
+							"key": "keyword",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/event-member/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"event_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/user/event-member/register",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"event-member",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/event-member/cancel",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"event_id\":1,\r\n    \"reason\":\"ghet\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/user/event-member/cancel",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"event-member",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "event/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"test\",\r\n    \"start_period\": \"2022-12-08 12:03:30\",\r\n    \"end_period\": \"2022-12-30 11:03:30\",\r\n    \"address\": \"test\",\r\n    \"description\": \"東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区永田町二丁目２番１号　衆議院第一議員会館999号東京都千代田区\",\r\n    \"notes\": \"test\",\r\n    \"entry_limit\": 1,\r\n    \"info_type\": [1,2,3],\r\n    \"show_start\": \"2022-12-08 12:03:30\",\r\n    \"show_end\": \"2022-12-30 11:03:30\",\r\n    \"images\": [\r\n        \"https://dpnlabo-fe.s3.ap-northeast-3.amazonaws.com/dnplab/temp/23fc9314-2c3d-4838-8734-f6924327846c_20221207131315072.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221207T041316Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=AKIAVG3LGPPXJMGHVMAM%2F20221207%2Fap-northeast-3%2Fs3%2Faws4_request&X-Amz-Signature=e991fbc8fe31102c1f31c429cda1d3a6aaa67fddba6f07bbeead6bb69199ba59\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/event/create",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"event",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "event/edit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": 1,\r\n    \"title\": \"イベントタイ123\",\r\n        \"address\": \"120 Hoàng Quốc Việt\",\r\n        \"description\": \"催イベント内容本\",\r\n        \"notes\": \"参加上の注意事項（参加申込ページに表示されます）\",\r\n        \"start_period\": \"2022-12-09 20:23:54\",\r\n        \"end_period\": \"2022-12-16 11:23:54\",\r\n        \"entry_limit\": 10,\r\n        \"remaining_period\": 16,\r\n        \"limit_current\": 0,\r\n        \"info_type\": [\r\n        ],\r\n        \"show_start\": \"2022-12-07 13:23:54\",\r\n        \"show_end\": \"2022-12-30 11:23:54\",\r\n        \"images\": [\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/event/edit/1",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"event",
+						"edit",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "event/details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{current_server}}/api/event/details/1",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"event",
+						"details",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "event/search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{current_server}}/api/event/search?type=2",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"event",
+						"search"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "desc",
+							"disabled": true
+						},
+						{
+							"key": "keyword",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "type",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"dungtx@gemvietnam.com\",\r\n    \"password\": \"123456aA@\",\r\n    \"confirm_password\": \"123456aA@\",\r\n    \"phone_number\":\"01234569984\",\r\n    \"accept\":0,\r\n    \"terms_ver\": 1,\r\n    \"user_sub\": \"51da7474-c029-45af-a370-0bcc9409eda9\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/user/register",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/register/verify",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{current_server}}/api/user/register/verify?vt=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdW5ndHhAZ2VtdmlldG5hbS5jb20iLCJpYXQiOjE2NzA0ODY4MzYsImV4cCI6MTY3MDU3MzIzNn0.m4mUl2zTWJ2l-PrMtEDgwuS07Tch9d-hAJ75MyXv51",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"register",
+						"verify"
+					],
+					"query": [
+						{
+							"key": "vt",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdW5ndHhAZ2VtdmlldG5hbS5jb20iLCJpYXQiOjE2NzA0ODY4MzYsImV4cCI6MTY3MDU3MzIzNn0.m4mUl2zTWJ2l-PrMtEDgwuS07Tch9d-hAJ75MyXv51"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/terms",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "dev",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{current_server}}/api/user/terms",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"terms"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": "00000000",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/withdraw",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{current_server}}/api/user/withdraw",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"withdraw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-edit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\":\"tien\",\r\n    \"first_name_kana\":\"TIEN\",\r\n    \"last_name\":\"dat\",\r\n    \"last_name_kana\":\"DAT\",\r\n    \"address\":\"97 hang ma\",\r\n    \"phone_number\":\" /(-abc) 08.8.8  (8)8(88/88)der\",\r\n    \"postal_code\":\"000001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/user/update-information?type=1",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"update-information"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/password/forgot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"yenttp@gemvietnam.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/user/password/forgot",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"password",
+						"forgot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/password/reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\":\"@123456bB\",\r\n    \"confirm_password\":\"@123456bB\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{current_server}}/api/user/password/reset?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5ZW50dHBAZ2VtdmlldG5hbS5jb20iLCJpYXQiOjE2NzAyMzk0MDQsImV4cCI6MTY3MDMyNTgwNH0.Zsdc0fYfw-t5oRHuRDt2mJmgalOJQ2ALm9jAZYReo54",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"password",
+						"reset"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5ZW50dHBAZ2VtdmlldG5hbS5jb20iLCJpYXQiOjE2NzAyMzk0MDQsImV4cCI6MTY3MDMyNTgwNH0.Zsdc0fYfw-t5oRHuRDt2mJmgalOJQ2ALm9jAZYReo54"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload/images",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/E:/pexels-rüveyda-14029041.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{current_server}}/api/upload/images",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"upload",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "event/details/members",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{current_server}}/api/event/details/members/1",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"event",
+						"details",
+						"members",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{current_server}}/health",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test/adminConfirmSignUp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{current_server}}/api/test/adminConfirmSignUp/dungtx@gemvietnam.com",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"adminConfirmSignUp",
+						"dungtx@gemvietnam.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test/adminVerifiedEmail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{current_server}}/api/test/adminVerifiedEmail/dungtx@gemvietnam.com",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"adminVerifiedEmail",
+						"dungtx@gemvietnam.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/test/adminDeleteUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{current_server}}/api/test/adminDeleteUser/longnt@gemvietnam.com",
+					"host": [
+						"{{current_server}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"adminDeleteUser",
+						"longnt@gemvietnam.com"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJraWQiOiJFMUt6V2h6ZHlla2cxTUZhSXFjMUJtZWI5aENHMFhuRld6aU9MUDMyeXNRPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxZTU5NjJjMy0xY2UwLTQ1NmQtYTc0YS03MzE2ODFkYTI0NzkiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtbm9ydGhlYXN0LTEuYW1hem9uYXdzLmNvbVwvYXAtbm9ydGhlYXN0LTFfa3NkdWJBMWVnIiwiY2xpZW50X2lkIjoiNnJtMnQzY3MxcTFvdXJsMXVhZ25kdTlhZjUiLCJvcmlnaW5fanRpIjoiZTUxMDk4YzQtM2JlMy00NjM2LWI3ZDItYmEwNjE5OWQzODk4IiwiZXZlbnRfaWQiOiI0N2QwOWI0OS04NDg0LTQ1MjYtOGEzZi04NTdmNjk1MDA3ZTAiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjcwNTUzNzY3LCJleHAiOjE2NzA1NjA5NjcsImlhdCI6MTY3MDU1Mzc2NywianRpIjoiMDA5MjNlMGEtZDhjYi00ZTI5LTkwNWMtZjBiYTM3MmQxY2YwIiwidXNlcm5hbWUiOiIxZTU5NjJjMy0xY2UwLTQ1NmQtYTc0YS03MzE2ODFkYTI0NzkifQ.RhSvaPMdgP1hvhrh67CqS4VxWh7zo7ajkmkVdLHUb4iJHRy-1pwdKX2N7s6VR2CeDxqh2KJARMsDXXcQTxdaTExwXOoDxFp2xioy1cQfBmVMe2-TviqW0Y1l3yEGy0okJkJ2sVpGYpcgix-MZGDgj2kWRzghdHFP4SvAMMl28-uXICjT2lUugT01xNX_TcdZ_zgwq6z90VU6gCMhxuwpRXrHv2QylM8fT-GLNuFo26vVaVm6WUKIn6rdh7dh85QTeur4IuvTSY-gnaBDWj86rj15MAoG7urO-ItIGGtAVFn4r_HiPUn-7_JwYNkzCMkW6P2x2OgXQtxYiOJ-F3-Jlw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "dev-remote",
+			"value": "192.168.1.165:8081"
+		},
+		{
+			"key": "dev-local",
+			"value": "localhost:8082"
+		},
+		{
+			"key": "current_server",
+			"value": "{{dev-local}}"
+		},
+		{
+			"key": "aws-gem",
+			"value": "15.152.54.240:8080",
+			"type": "default"
+		},
+		{
+			"key": "aws-dnp",
+			"value": "13.208.208.218:8080",
+			"type": "default"
+		}
+	]
+}
