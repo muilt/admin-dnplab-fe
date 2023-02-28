@@ -29,7 +29,7 @@ export const OverLay = ({ isOpen, setIsOpen, children, width = 760, py = 6.25, p
   }, [isOpen]);
 
   return (
-    <Backdrop className={`${classes.backdrop} ${isOpen && classes.backdrop}`} open={isOpen}>
+    <Backdrop className={`${classes.backdrop} ${isOpen && classes.backdrop}`} open={Boolean(isOpen)}>
       <Box
         className={`${isMobile ? "popup-overlay" : ""} ${classes.wrapper} ${
           pathName === router.mypage && classes.background
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px 50px",
   },
   background: {
-    backgroundColor: "#e1f0ea",
+    backgroundColor: "#bfc0c0",
   },
   cancel: {
     position: "absolute",

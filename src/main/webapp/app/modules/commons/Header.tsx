@@ -3,11 +3,11 @@ import { Avatar, Box, Button, Menu, MenuItem, Tooltip, Typography } from "@mui/m
 import { linkPortal } from "app/config/constants";
 import commonText from "app/lang/ja/commonText";
 import { default as headerFooter, default as loginLogout } from "app/lang/ja/headerFooter";
-import { ROUTES } from "app/routes/appRoutes";
+import { paths } from "app/routes/appRoutes";
 import router from "app/routes/router";
 import { IRootState } from "app/shared/reducers";
 import { isMobile, logout, setLoading, setMessageText } from "app/shared/reducers/authentication";
-import { setUserInfo } from "app/shared/reducers/userInfo";
+import { IS_SHOW_MENU, LOGIN } from "app/shared/util/pagination.constants";
 import { Auth } from "aws-amplify";
 import React from "react";
 import { connect } from "react-redux";
@@ -27,7 +27,6 @@ const Header = (props: any) => {
       props.setLoading(true);
       setIsLogout(false);
       await Auth.signOut({ global: true });
-      props.setUserInfo();
       await props.logout();
       props.setLoading(false);
       history.push(router.login);
@@ -58,14 +57,6 @@ const Header = (props: any) => {
   // handle menu display
   const showMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  // get user name
-  const getUserName = (isTooltip: any) => {
-    const name = `${props.userInfo?.first_name || ""}　${props.userInfo?.last_name || ""}`;
-    if (name.length > 5 && !isTooltip) {
-      return `${name.slice(0, 5)}...`;
-    } else return name && name !== "　" ? name : loginLogout.myPageTitle;
   };
 
   return (
@@ -125,21 +116,11 @@ const Header = (props: any) => {
                     <Box className="menu-list-mobile" style={{ maxWidth: 150 }}>
                       {props.isAuthenticated && (
                         <>
-                          {Object.values(ROUTES).map((page, i) => {
-                            if (props.userInfo?.user_type === 2 && page.key === "2") {
+                          {Object.values(paths).map((page, i) => {
+                            if (page.role.includes(IS_SHOW_MENU))
                               return (
-                                <MenuItem key={page.key}>
-                                  <Button key={page.key} href={page.path.BASE}>
-                                    {page.title}
-                                  </Button>
-                                </MenuItem>
-                              );
-                            } else if (page.key !== "2")
-                              return (
-                                <MenuItem key={page.key}>
-                                  <Button key={page.key} href={page.path.BASE}>
-                                    {page.title}
-                                  </Button>
+                                <MenuItem key={i.valueOf()}>
+                                  <Button href={page.path}>{page.title}</Button>
                                 </MenuItem>
                               );
                           })}
@@ -156,13 +137,13 @@ const Header = (props: any) => {
               )}
               {isMobile && props.isAuthenticated && (
                 <Box className="header-icon-mypage">
-                  <Button href={router.mypage}>
+                  <Button href={""}>
                     <Avatar alt="My Page" className="icon-avatar" />
                   </Button>
-                  <Tooltip title={getUserName(true)} arrow>
+                  <Tooltip title={loginLogout.myPageTitle} arrow>
                     <Typography sx={{ color: "black" }} className="fs-12-text pointer">
-                      <Button href={router.mypage} className={`mypage-name ${isMobile ? "fs-14-text" : "fs-12-text"}`}>
-                        {getUserName(false)}
+                      <Button href={""} className={`mypage-name ${isMobile ? "fs-14-text" : "fs-12-text"}`}>
+                        {loginLogout.myPageTitle}
                       </Button>
                     </Typography>
                   </Tooltip>
@@ -171,19 +152,11 @@ const Header = (props: any) => {
               {props.isAuthenticated ? (
                 <div className="pc-only">
                   <ul className="nav__list nav-left">
-                    {Object.values(ROUTES).map((page, i) => {
-                      if (props.userInfo?.user_type === 2 && page.key === "2") {
+                    {Object.values(paths).map((page, i) => {
+                      if (page.role.includes(IS_SHOW_MENU))
                         return (
-                          <li key={page.key}>
-                            <a key={page.key} href={page.path.BASE} className="fs-16-text">
-                              {page.title}
-                            </a>
-                          </li>
-                        );
-                      } else if (page.key !== "2")
-                        return (
-                          <li key={page.key}>
-                            <a key={page.key} href={page.path.BASE} className="fs-16-text">
+                          <li key={i.valueOf()}>
+                            <a href={page.path} className="fs-16-text">
                               {page.title}
                             </a>
                           </li>
@@ -203,18 +176,15 @@ const Header = (props: any) => {
               ) : (
                 <div className="pc-only">
                   <ul className="nav__list">
-                    {Object.values(ROUTES).map((page, i) => {
-                      {
-                        if (page.key === "1") {
-                          return (
-                            <li key={page.key}>
-                              <a key={page.key} href={page.path.BASE} className="fs-16-text">
-                                {page.title}
-                              </a>
-                            </li>
-                          );
-                        }
-                      }
+                    {Object.values(paths).map((page, i) => {
+                      if (page.role.includes(IS_SHOW_MENU) && !page.role.includes(LOGIN))
+                        return (
+                          <li key={i.valueOf()}>
+                            <a href={page.path} className="fs-16-text">
+                              {page.title}
+                            </a>
+                          </li>
+                        );
                     })}
                   </ul>
                 </div>
@@ -224,10 +194,10 @@ const Header = (props: any) => {
                   <Button href={router.mypage}>
                     <Avatar alt="My Page" className="icon-avatar" />
                   </Button>
-                  <Tooltip title={getUserName(true)} arrow>
+                  <Tooltip title={loginLogout.myPageTitle} arrow>
                     <Typography sx={{ color: "black" }} className="fs-12-text pointer">
                       <Button href={router.mypage} className="mypage-name fs-14-text">
-                        {getUserName(false)}
+                        {loginLogout.myPageTitle}
                       </Button>
                     </Typography>
                   </Tooltip>
@@ -260,10 +230,9 @@ const Header = (props: any) => {
     </>
   );
 };
-const mapDispatchToProps = { logout, setLoading, setUserInfo, setMessageText };
+const mapDispatchToProps = { logout, setLoading, setMessageText };
 
-const mapStateToProps = ({ userInfoState, authentication }: IRootState) => ({
-  userInfo: userInfoState.userInfo,
+const mapStateToProps = ({ authentication }: IRootState) => ({
   isAuthenticated: authentication.isAuthenticated,
   isMobile: authentication.isMobile,
 });

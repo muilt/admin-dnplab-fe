@@ -19,11 +19,10 @@ import {
   setMessageText,
   setSeverityType,
 } from "app/shared/reducers/authentication";
-import { setUserInfo } from "app/shared/reducers/userInfo";
 import { Auth } from "aws-amplify";
 import * as React from "react";
 import { connect } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ButtonComponent from "../commons/Button";
 import { TitleScreen } from "../commons/TitleScreen";
 
@@ -40,7 +39,6 @@ const Login = (props) => {
     password: "",
     login: "",
   });
-  const { state } = useLocation();
 
   const history = useHistory();
   let listKeyError = [];
@@ -61,7 +59,7 @@ const Login = (props) => {
   const checkValidate = () => {
     const listError = [];
     Object.keys(formValues).forEach((key) => {
-      if (!formValues[key] || !formValues[key].trim()) {
+      if (!formValues[key] || (!formValues[key].trim() && key === "email")) {
         listError.push(key);
         setErrorLogin((prev) => {
           return {
@@ -84,6 +82,7 @@ const Login = (props) => {
       // login with cognito
       try {
         user = await Auth.signIn(email?.toLowerCase(), password);
+        await props.login(user, password);
       } catch (err) {
         if (err.name === "NotAuthorizedException" && err.message === "Password attempts exceeded") {
           setErrorLogin({
@@ -108,20 +107,14 @@ const Login = (props) => {
     if (user != null) {
       props.setLoading(false);
       if (user.challengeName === "NEW_PASSWORD_REQUIRED") {
-        await props.login(formValues.email?.toLowerCase(), formValues.password, user);
+        await props.setIsAuthent(false);
         history.push(router.changePassword);
-        history.push({
-          pathname: "change-password",
-          state: {
-            user: user,
-          },
-        });
       } else {
-        await props.setIsAuthent(true);
-        if (state && Object.keys(state).includes("prevPath")) {
-          history.goBack();
+        if (user.challengeName === mfaType) {
+          history.push(router.smsAuthen);
         } else {
-          history.push(router.mypage);
+          await props.setIsAuthent(true);
+          history.push(router.event);
         }
       }
     }
@@ -163,7 +156,6 @@ const Login = (props) => {
     props.logout();
     props.setIsAuthent(false);
     window.localStorage.clear();
-    props.setUserInfo();
   };
 
   // handling when pressing enter key in search box
@@ -181,83 +173,84 @@ const Login = (props) => {
   }, []);
 
   return (
-    <div style={{ padding: 20 }} className="page-content form-login">
-      <CssBaseline />
-      <Box textAlign="center">
-        <TitleScreen>{loginLogout.login.title}</TitleScreen>
-      </Box>
-      <form onSubmit={handleSubmitLogin}>
-        <Box sx={{ width: "100%" }}>
-          <Box className="form-login-email" mt={3}>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-              <Grid item xs={12}>
-                <Box className="input-title fs-14-text">
-                  {loginLogout.login.userID}
-                  <span className="input-require">{commonText.textRequire}</span>
-                </Box>
-                <TextField
-                  inputProps={{
-                    maxLength: 200,
-                  }}
-                  id="outlined-basic"
-                  variant="outlined"
-                  size="small"
-                  className="input-textfield fs-14-text"
-                  name="email"
-                  value={formValues.email}
-                  onChange={handleInputChange}
-                  onBlur={handleSetValue}
-                  onKeyPress={handleEnterLogin}
-                />
-                {errorLogin.email && <p className="error-message fs-14-text">{errorLogin.email}</p>}
+    <div className="d-flex justify-content-center">
+      <div style={{ padding: 20 }} className="page-content form-login">
+        <CssBaseline />
+        <Box textAlign="center">
+          <TitleScreen>{loginLogout.login.title}</TitleScreen>
+        </Box>
+        <form onSubmit={handleSubmitLogin}>
+          <Box sx={{ width: "100%" }}>
+            <Box className="form-login-email" mt={3}>
+              <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid item xs={12}>
+                  <Box className="input-title fs-14-text">
+                    {loginLogout.login.userID}
+                    <span className="input-require">{commonText.textRequire}</span>
+                  </Box>
+                  <TextField
+                    inputProps={{
+                      maxLength: 200,
+                    }}
+                    id="outlined-basic"
+                    variant="outlined"
+                    size="small"
+                    className="input-textfield fs-14-text"
+                    name="email"
+                    value={formValues.email}
+                    onChange={handleInputChange}
+                    onBlur={handleSetValue}
+                    onKeyPress={handleEnterLogin}
+                  />
+                  {errorLogin.email && <p className="error-message fs-14-text">{errorLogin.email}</p>}
+                </Grid>
+                <Grid item xs={12}>
+                  <Box className="input-title fs-14-text">
+                    {loginLogout.login.password}
+                    <span className="input-require">{commonText.textRequire}</span>
+                  </Box>
+                  <TextField
+                    id="input-with-icon-textfield"
+                    type={isShowPassword ? "text" : "password"}
+                    variant="outlined"
+                    size="small"
+                    className="input-textfield fs-14-text"
+                    name="password"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton onClick={handleClickShowPassword}>
+                            {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    inputProps={{
+                      maxLength: 128,
+                    }}
+                    onChange={handleInputChange}
+                    onKeyPress={handleEnterLogin}
+                  />
+                  {errorLogin.password ? (
+                    <p className="error-message fs-14-text">{errorLogin.password}</p>
+                  ) : (
+                    errorLogin.login && <p className="error-message fs-14-text">{errorLogin.login}</p>
+                  )}
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Box className="input-title fs-14-text">
-                  {loginLogout.login.password}
-                  <span className="input-require">{commonText.textRequire}</span>
-                </Box>
-                <TextField
-                  id="input-with-icon-textfield"
-                  type={isShowPassword ? "text" : "password"}
-                  variant="outlined"
-                  size="small"
-                  className="input-textfield fs-14-text"
-                  name="password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={handleClickShowPassword}>
-                          {isShowPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  inputProps={{
-                    maxLength: 128,
-                  }}
-                  onChange={handleInputChange}
-                  onKeyPress={handleEnterLogin}
-                />
-                {errorLogin.password ? (
-                  <p className="error-message fs-14-text">{errorLogin.password}</p>
-                ) : (
-                  errorLogin.login && <p className="error-message fs-14-text">{errorLogin.login}</p>
-                )}
-              </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-        <Box textAlign="center" mt={5}>
-          <ButtonComponent name={loginLogout.login.buttonLogin} handleClick={handleSubmitLogin} />
-        </Box>
-      </form>
+          <Box textAlign="center" mt={5}>
+            <ButtonComponent name={loginLogout.login.buttonLogin} handleClick={handleSubmitLogin} />
+          </Box>
+        </form>
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ authentication, userInfoState }: IRootState) => ({
+const mapStateToProps = ({ authentication }: IRootState) => ({
   errorMessage: authentication.errorMessage,
-  userInfo: userInfoState.userInfo,
 });
 
 const mapDispatchToProps = {
@@ -265,7 +258,6 @@ const mapDispatchToProps = {
   setLoading,
   setIsAuthent,
   logout,
-  setUserInfo,
   setSeverityType,
   setMessageText,
 };

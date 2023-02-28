@@ -7,7 +7,7 @@ export const TitleScreen = ({ children, _ref = null, ...rest }) => {
   const theme = useTheme();
 
   return (
-    <Box pb={1} mb={1.875} borderBottom={1} borderColor={[theme.palette.grey?.[200]]} {...rest}>
+    <Box mb={1.875} borderBottom={1} borderColor={[theme.palette.grey?.[200]]} {...rest}>
       <Typography className="fs-22-text font-weight-bold">{children}</Typography>
     </Box>
   );

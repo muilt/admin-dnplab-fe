@@ -1,0 +1,92 @@
+.member-detail {
+  &-content {
+    width: 100% !important;
+    padding: 0 40px;
+    &-info {
+      display: flex;
+      flex-direction: column !important;
+      align-items: flex-start;
+      .form-name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .status-user {
+          min-width: 200px;
+          height: 70px;
+          margin-left: 30px;
+          background-color: $red !important;
+          color: $white !important;
+          border: 1px solid $red;
+        }
+      }
+    }
+    &-service {
+      display: flex;
+      flex-direction: column !important;
+      align-items: flex-end;
+      .form-service {
+        .service-use {
+          background-color: $purple !important;
+          border: 2px solid $purpleBorder;
+        }
+        .service-not-use {
+          border: 2px solid $gray;
+          pointer-events: none;
+          opacity: 0.4;
+        }
+      }
+    }
+    .service {
+      border-radius: 10px !important;
+      color: $black !important;
+      padding: 20px 50px;
+      max-width: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .button-action {
+    display: flex;
+    justify-content: center;
+    .button-name {
+      width: 200px;
+    }
+    .button-back-list-member {
+      .button-name {
+        background-color: $white !important;
+        color: $black !important;
+        border: 2px solid $black;
+      }
+    }
+    .button-lock-member {
+      .button-name {
+        background-color: $red !important;
+        border: 1px solid $red;
+      }
+    }
+    .button-unlock-member {
+      .button-name {
+        background-color: #576bbdfe !important;
+        border: 2px solid #455ec9fe !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .member-detail {
+    &-content {
+      width: 100% !important;
+      padding: 0 10px;
+      margin-left: 0;
+      &-service {
+        .form-service {
+          .service {
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}

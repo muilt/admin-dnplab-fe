@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { connect } from "react-redux";
-import { Route, RouteProps, useLocation } from "react-router-dom";
+import { Route, RouteProps } from "react-router-dom";
 
 import { paths } from "app/routes/appRoutes";
 import ErrorBoundary from "app/shared/error/ErrorBoundary";
@@ -11,11 +11,7 @@ interface IOwnProps extends RouteProps {
 
 export interface IPrivateRouteProps extends IOwnProps, StateProps {}
 
-export const PrivateRouteComponent = ({
-  component: Component,
-  ...rest
-}: IPrivateRouteProps) => {
-  const location = useLocation()
+export const PrivateRouteComponent = ({ component: Component, ...rest }: IPrivateRouteProps) => {
   const checkAuthorities = (props) => {
     return (
       <ErrorBoundary>
@@ -24,20 +20,23 @@ export const PrivateRouteComponent = ({
     );
   };
 
-  const renderRedirect = useCallback((props) => {
-    return checkAuthorities(props);
-  }, [rest]);
+  const renderRedirect = useCallback(
+    (props) => {
+      return checkAuthorities(props);
+    },
+    [rest]
+  );
 
   // Set screen scroll amount to 0 when page transitions
   React.useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   React.useEffect(() => {
     const arrayPathname = rest.path.toString().split("/");
     const pageDetail = arrayPathname[arrayPathname.length - 1];
     Object.values(paths).forEach((data) => {
-      if (data.path === rest.path || `${data.path}/${pageDetail}` === rest.path) {
+      if (data.path === rest.path || `${data.path}${pageDetail}` === rest.path) {
         document.title = data.title;
       }
     });

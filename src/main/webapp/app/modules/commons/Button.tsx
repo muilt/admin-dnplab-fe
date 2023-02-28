@@ -18,7 +18,7 @@ const ButtonComponent = (props) => {
   return (
     <Box className="button-component">
       <Button
-        className={`button-name ${props.disable && "button-disabled"}`}
+        className={`button-name ${props.disable ? "button-disabled" : ""}`}
         onClick={handleClick}
         disabled={props.disable}
       >

@@ -15,7 +15,6 @@ img {
   position: sticky;
   top: 100%;
   text-align: center;
-  padding: 1rem;
   a:-webkit-any-link {
     color: none !important;
     cursor: pointer;
@@ -45,7 +44,6 @@ body {
   width: calc((1288 / 1366) * 100vw);
   max-width: 1288px;
   margin: 0 auto;
-  padding: calc((40 / 16) * 1em) 0 calc((60 / 16) * 1em);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -253,7 +251,7 @@ body {
   #pagetop {
     width: calc((72 / 750) * 100vw);
     height: calc((72 / 750) * 100vw);
-    background: $appBase;
+    background: $gray;
     border-radius: 100px;
     position: fixed;
     right: 20px;

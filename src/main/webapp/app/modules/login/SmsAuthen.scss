@@ -1,0 +1,39 @@
+.form-smsAuthen {
+  padding: 16px;
+  margin: auto;
+  max-width: 475px;
+  width: 100%;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  background-color: white;
+  min-height: 500px;
+ 
+  &-sms{
+    margin-bottom: 50px;
+  }
+
+  &-button-submit {
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .input-require {
+    background-color: $appBaseInputRequire;
+    color: white;
+    padding: 2px 5px;
+    margin: 2px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-top: 20px;
+  }
+
+  .input-title {
+    margin-bottom: 5px;
+    margin-top: 20px;
+  }
+  .input-link{
+    text-align: center;
+    text-decoration: underline;
+  }
+}

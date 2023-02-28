@@ -1,0 +1,62 @@
+.event-list {
+  &-sort {
+    padding: 10px 0;
+    .sort-type {
+      text-align: start;
+      .MuiSelect-select {
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+  }
+  &-table {
+    .table-header {
+      th {
+        background-color: #333333;
+        border: 1px solid $white;
+        min-width: 120px;
+        color: $white !important;
+        padding: 10px;
+        span {
+          color: $white !important;
+        }
+        .MuiTableSortLabel-icon {
+          color: $white !important;
+        }
+      }
+      .item-id {
+        min-width: 70px;
+      }
+    }
+    .table-body {
+      td {
+        padding: 5px 10px;
+        border: 1px solid $white;
+        height: 35px;
+      }
+      .row-grey {
+        td {
+          background-color: #e7e7e7 !important;
+        }
+      }
+      .row-light {
+        td {
+          background-color: #cbcbcb !important;
+        }
+      }
+      .format-date {
+        white-space: nowrap;
+      }
+    }
+  }
+  &-paging {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.item-sort {
+  width: 100%;
+  display: block !important;
+  padding: 10px !important;
+}

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import DateFnsUtils from "@date-io/date-fns";
 import { makeStyles } from "@material-ui/core/styles";
-import { KeyboardDateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import commonText from "app/lang/ja/commonText";
 import clsx from "clsx";
 import { format } from "date-fns";
@@ -45,20 +45,18 @@ export const CustomDatePicker = (props: any) => {
 
   return (
     <MuiPickersUtilsProvider utils={JaLocalizedUtils} locale={ja}>
-      <KeyboardDateTimePicker
+      <KeyboardDatePicker
         className={`${clsx(classes.datePick)} date-time-value fs-14-text`}
         id="time-picker"
         value={date ? new Date(date) : null}
         onChange={handleChange}
-        placeholder="yyyy/mm/dd　HH:mm"
-        format="yyyy/MM/dd　HH:mm"
+        placeholder="yyyy/mm/dd"
+        format="yyyy/MM/dd"
         invalidDateMessage={false}
         minDate={checkMinDate()}
         maxDate={checkMaxDate()}
         helperText={null}
-        autoOk={true}
-        disablePast={true}
-        ampm={false}
+        autoOk={false}
         cancelLabel={commonText.buttonCancel}
       />
     </MuiPickersUtilsProvider>
@@ -110,14 +108,6 @@ class JaLocalizedUtils extends DateFnsUtils {
   getYearText = (date: Date): string => {
     const seireki = date.getFullYear();
     return seireki + "年";
-  };
-
-  getHourText = (date: Date): string => {
-    return format(new Date(getDateJP(date)), "HH時", { locale: this.locale });
-  };
-
-  getMinuteText = (date: Date): string => {
-    return format(new Date(getDateJP(date)), "mm分", { locale: this.locale });
   };
 }
 

@@ -1,15 +1,7 @@
 export default {
-  email: "メールアドレス",
   textRequire: "必須",
   errorRequire: "入力は必須となります。",
-  errorFormatKana: "全角カタカナで入力してください。",
-  errorFormatNumber: "電話番号は、不正です。",
   errorMaxlength: "文字以内で入力してください。",
-  errorFormatPhone: "電話番号のフォーマットは不正です。",
-  errorFormatEmail: "メールのフォーマットは不正です。",
-  event: {
-    contentConfirm: "削除してよろしいでしょうか？",
-  },
   buttonLoadmore: "もっとみる",
   buttonCancel: "キャンセル",
   cognito: {
@@ -45,7 +37,7 @@ export default {
     InvalidSmsRoleTrustRelationshipException: "SMS 構成に提供されたロールの信頼関係が無効です",
     InvalidUserPoolConfigurationException: "無効なユーザー プール構成です。",
     LimitExceededException: "試行制限を超えました。しばらくしてから試行してください。",
-    NotAuthorizedException: "入力された管理者ID、またはパスワードが間違っております。再度ご確認ください",
+    NotAuthorizedException: "入力されたメールアドレス、またはパスワードが間違っております。再度ご確認ください",
     PackedPolicyTooLargeException:
       "結合されたポリシー インスタンスとタグ インスタンスの合計パッキング サイズが大きすぎるため、要求は拒否されました。",
     PasswordResetRequiredException: "パスワードのリセットが必要です。",
@@ -76,29 +68,20 @@ export default {
     maxError:
       "一定回数以上ログインに失敗したため、一時的にアカウントがロックされました。お時間をおいて、再度お試しください",
   },
-  confirmRegisterError: "既に登録済みか、無効なURLです",
-  buttonRegisterOrganizer: "申請する",
   cognitoChangePassword: {
-    NotAuthorizedException: "古いパスワードが正しくありません。再入力してください。",
+    NotAuthorizedException: "パスワードが一致しません。",
   },
   cognitoLogout: {
     NotAuthorizedException: "アクセストークンが取り消されました。",
   },
-  errorEditUser: "ユーザー情報の更新に失敗しました。",
-  errorForgotPassword: "パスワードの変更に失敗しました。",
-  errorImageFile: "個の画像ファイルの形式が正しくありません",
-  errorImageSize: "ファイルサイズは 10MB を超えてはいけません",
   changePasswordSuccess: "パスワードの変更は成功になりました。",
-  resetPasswordSuccess: "パスワードの再設定が成功しました。",
-  checkTokenResetPasswordError: "無効なトークン。もう一度やり直すか、コードの再送信ボタンを押してください。",
-  linksHeader: {
-    linkEventList: "イベント一覧",
-    linkEventCreate: "作成したイベント",
-    linkEventRegister: "参加イベント一覧",
-  },
   titlePage: {
     login: "ログイン",
-    changePassword: "新規パスワード作成",
+    changePassword: "パスワード変更",
+    eventList: "イベント一覧",
+    memberList: "会員一覧",
+    memberDetail: "会員詳細",
+    smsAuthen: "SMS認証",
   },
-  errorPageRule: "この機能を実行する権限がありません。",
+  userName: "管理者名が入ります",
 };

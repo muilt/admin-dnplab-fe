@@ -49,11 +49,3 @@ export const post = async (key: string, data?, config?) => {
 export const put = async (key: string, data) => {
   return axios.put("api/" + key, data);
 };
-
-export const patch = async (key: string, data) => {
-  return axios.patch("api/" + key, data);
-};
-
-export const getTerm = (key: string, param?) => {
-  return axios.get("api/" + key + (param ? objToString(param) : ""));
-};

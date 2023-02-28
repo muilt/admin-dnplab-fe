@@ -137,4 +137,19 @@ button,
 div,
 a {
   font-family: "Noto Serif JP", serif !important;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.MuiPagination-root {
+  .page-normal {
+    background-color: $white;
+  }
+  .page-selected {
+    background-color: $gray !important;
+  }
+}
+.page-content {
+  background-color: $white;
+  border-radius: 10px;
 }

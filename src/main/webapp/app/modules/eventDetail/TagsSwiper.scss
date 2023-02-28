@@ -1,0 +1,23 @@
+.swiper {
+  width: 100%;
+  margin-bottom: 10px;
+  .swiper-slide {
+    white-space: nowrap;
+    width: auto !important;
+    padding: 5px;
+    border-radius: 20px;
+    max-height: 25px;
+    display: flex;
+    align-items: center;
+  }
+
+  .area-tag {
+    border: 1px solid;
+    color: #1ca1e6;
+  }
+
+  .purpose-tag {
+    border: 1px solid;
+    color: #28a745;
+  }
+}

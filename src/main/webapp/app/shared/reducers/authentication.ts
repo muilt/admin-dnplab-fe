@@ -1,14 +1,15 @@
 /* eslint-disable object-shorthand */
 
+import { Storage } from "react-jhipster";
+
 export const ACTION_TYPES = {
   LOGIN: "authentication/LOGIN",
   ERROR_MESSAGE: "authentication/ERROR_MESSAGE",
   SET_LOADING: "authentication/SET_LOADING",
   SET_IS_AUTHENT: "authentication/SET_IS_AUTHENT",
   LOGOUT: "authentication/LOGOUT",
-  SET_USERNAME: "authentication/SET_USERNAME",
   SET_MESSAGE_TEXT: "authentication/SET_MESSAGE_TEXT",
-  SET_SERVERITY_TYPE: "authentication/SET_SERVERITY_TYPE"
+  SET_SERVERITY_TYPE: "authentication/SET_SERVERITY_TYPE",
 };
 
 export const isMobile = window.innerWidth < 992;
@@ -24,10 +25,9 @@ const initialState = {
   redirectMessage: (null as unknown) as string,
   isMobile: isMobile,
   loggingUser: {} as any,
-  userNameCognito: (null as unknown) as string,
-  password: (null as unknown) as string,
   messageText: (null as unknown) as string,
   serverityType: "success",
+  password: (null as unknown) as string,
 };
 
 export type AuthenticationState = Readonly<typeof initialState>;
@@ -43,9 +43,7 @@ export default (state: AuthenticationState = initialState, action): Authenticati
         loginError: false,
         showLoginScreen: false,
         loginSuccess: true,
-        userNameCognito: action.payload.userNameCognito,
         loggingUser: action.payload.user,
-        isAuthenticated: true,
         password: action.payload.password,
       };
     }
@@ -76,13 +74,7 @@ export default (state: AuthenticationState = initialState, action): Authenticati
         ...state,
         loading: false,
         isAuthenticated: false,
-        loggingUser: {}
-      };
-    }
-    case ACTION_TYPES.SET_USERNAME: {
-      return {
-        ...state,
-        userNameCognito: action.payload.userName,
+        loggingUser: {},
       };
     }
     case ACTION_TYPES.SET_MESSAGE_TEXT: {
@@ -104,24 +96,20 @@ export default (state: AuthenticationState = initialState, action): Authenticati
 
 export const displayAuthError = (message) => ({ type: ACTION_TYPES.ERROR_MESSAGE, message });
 
-export const getSession: () => void = () => (_dispatch, _getState) => { };
+export const getSession: () => void = () => (_dispatch, _getState) => {};
 
-export const login: (userNameCognito: string, password: string, user: any) => void = (
-  userNameCognito,
-  password,
-  user
-) => async (dispatch, _getState) => {
+export const login: (user: any, password: string) => void = (user, password) => async (dispatch, _getState) => {
   const result = await dispatch({
     type: ACTION_TYPES.LOGIN,
     payload: {
-      userNameCognito,
       user,
-      password,
+      password
     },
   });
   if (!result) {
     return;
   }
+  Storage.local.set("username", user?.username);
   await dispatch(getSession());
 };
 
@@ -146,23 +134,16 @@ export const setIsAuthent = (status) => ({
   },
 });
 
-export const setUserName = (userName) => ({
-  type: ACTION_TYPES.SET_USERNAME,
-  payload: {
-    userName,
-  },
-});
-
 export const setMessageText = (value) => ({
   type: ACTION_TYPES.SET_MESSAGE_TEXT,
   payload: {
-    value
+    value,
   },
 });
 
 export const setSeverityType = (value) => ({
   type: ACTION_TYPES.SET_SERVERITY_TYPE,
   payload: {
-    value
+    value,
   },
 });
